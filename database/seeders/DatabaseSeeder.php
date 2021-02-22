@@ -72,10 +72,6 @@ class DatabaseSeeder extends Seeder
             $this->command->info('Added only default user role.');
         }
 
-
-        // now lets seed some posts for demo
-        factory(\App\Models\Post::class, 30)->create();
-        $this->command->info('Some Posts data seeded.');
         $this->command->warn('All done :)');
     }
 
@@ -86,7 +82,7 @@ class DatabaseSeeder extends Seeder
      */
     private function createUser($role)
     {
-        $user = factory(User::class)->create();
+        $user = \App\Models\User::factory()->create();
         $user->assignRole($role->name);
 
         if( $role->name == 'Admin' ) {
